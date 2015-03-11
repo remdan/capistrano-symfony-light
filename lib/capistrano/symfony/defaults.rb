@@ -1,7 +1,7 @@
 # If you have a other name for your php, maybe like "php54 or php55" change it.
 set :symfony_php,                       "php"
 
-# If you use a diffrent php.ini change it and set the path.
+# If you use a diffrent php.ini change it and set the path absolute to your root like "/etc/php55/php.ini".
 set :symfony_php_ini,                   ""
 
 # Set the roles for all tasks.
@@ -30,3 +30,6 @@ set :symfony_console_path,              "#{fetch(:symfony_app_path)}/console"
 
 # Files to clear relative from :symfony_working_path
 set :symfony_clear_files,               ["#{fetch(:symfony_web_path)}/app_*.php"]
+
+# Folders that have be created relative from :symfony_working_path
+set :symfony_create_folders,            ["#{fetch(:symfony_app_path)}/cache"]

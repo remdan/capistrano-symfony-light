@@ -69,15 +69,19 @@ set :symfony_console_path,              "#{fetch(:symfony_app_path)}/console"
 # Files to clear relative from :symfony_working_path
 set :symfony_clear_files,               ["#{fetch(:symfony_web_path)}/app_*.php"]
 ```
+# Folders that have be created relative from :symfony_working_path
+set :symfony_create_folders,            ["#{fetch(:symfony_app_path)}/cache"]
+
 
 ### Integrated common tasks
 
-The folowing common tasks are already integrated:
+The folowing common tasks are already integrated and every task is reenabled, that means you can call them many times if you need.
 * ```symfony:assets:install```
 * ```symfony:assetic:dump```
 * ```symfony:cache:clear```
 * ```symfony:cache:warmup```
 * ```symfony:clear_files```
+* ```symfony:create_folders```
 * ```symfony:build_bootstrap```
 
 So you can use them with hooks like this:
@@ -88,17 +92,31 @@ So you can use them with hooks like this:
 
 Or if you need to pass some options:
 ```ruby
-after :deploy, :updated do
-  invoke "symfony:assetic:dump", "--env=prod"
-  invoke "symfony:cache:clear", "--env=prod --no-debug"
+namespace :deploy do
+
+  task :assetic_dump_prod do
+    invoke "symfony:assetic:dump", "--env=prod"
+  end
+
+  task :cache_clear_prod do
+    invoke "symfony:cache:clear", "--env=prod --no-debug"
+  end
+
+  after "deploy:updated", "symfony:build_bootstrap"
+  after "deploy:updated", "deploy:cache_clear_prod"
+  after "deploy:updated", "deploy:assetic_dump_prod"
 end
+```
+
+Your tasks can you also define in a separate .rake and load it in you Capfile:
+```ruby
+# Load custom tasks from `lib/capistrano/tasks' if you have any defined
+#Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 ```
 
 If you need a not already provided task you can use "symfony:console"  
 ```ruby
-after :deploy, :updated do
-  invoke "symfony:console", "doctrine:schema:update", "--force"
-end
+invoke "symfony:console", "doctrine:schema:update", "--force"
 ```
 
 [1]: http://capistranorb.com/documentation/getting-started/flow/
