@@ -33,3 +33,6 @@ set :symfony_clear_files,               ["#{fetch(:symfony_web_path)}/app_*.php"
 
 # Folders that have be created relative from :symfony_working_path
 set :symfony_create_folders,            ["#{fetch(:symfony_app_path)}/cache"]
+
+# Symfony build_bootstrap.php path
+set :symfony_build_bootstrap_path,      "./vendor/sensio/distribution-bundle/Resources/bin/build_bootstrap.php"

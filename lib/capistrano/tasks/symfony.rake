@@ -21,7 +21,7 @@ namespace :symfony do
         if php_ini.length > 0
           php_ini = ' -c ' + php_ini
         end
-        execute fetch(:symfony_php), php_ini, "./vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php"
+        execute fetch(:symfony_php), php_ini, fetch(:symfony_build_bootstrap_path)
       end
     end
     Rake::Task[t.name].reenable

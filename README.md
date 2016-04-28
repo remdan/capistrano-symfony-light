@@ -10,8 +10,8 @@ Add this line to your application's Gemfile:
 
 ```
 # Gemfile
-gem 'capistrano',  '~> 3.1'
-gem 'capistrano-symfony-light', '~> 0.0.1'
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-symfony-light',
 ```
 
 And then execute:
@@ -72,6 +72,8 @@ set :symfony_clear_files,               ["#{fetch(:symfony_web_path)}/app_*.php"
 # Folders that have be created relative from :symfony_working_path
 set :symfony_create_folders,            ["#{fetch(:symfony_app_path)}/cache"]
 
+# Symfony build_bootstrap.php path depend on the composer setting
+set :symfony_build_bootstrap_path,      "./vendor/sensio/distribution-bundle/Resources/bin/build_bootstrap.php"
 
 ### Integrated common tasks
 
