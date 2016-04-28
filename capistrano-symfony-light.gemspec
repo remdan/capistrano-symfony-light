@@ -19,5 +19,5 @@ Gem::Specification.new do |spec|
   # No tests yet.
   # spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
 
-  spec.add_dependency 'capistrano', '~> 3.1.0'
+  spec.add_dependency 'capistrano', '~> 3.1'
 end
