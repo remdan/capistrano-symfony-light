@@ -4,9 +4,9 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'capistrano-symfony-light'
-  spec.version       = '0.0.1'
+  spec.version       = '0.0.2'
   spec.authors       = ['Remdan']
-  spec.email         = ['info@remdan.co']
+  spec.email         = ['hello@remdan.ch']
 
   spec.summary       = %q{Symfony support for Capistrano 3.x}
   spec.description   = %q{Provide some Symfony task for to use them in your capistrano project.}
